@@ -18,5 +18,6 @@ I used Visual Studio Code and Python.
 ## Useful Websites
 
 {Make a list of websites that you found helpful in this project}
-* [Web Site Name](http://url.link.goes.here)
-* [Web Site Name](http://url.link.goes.here)
+* [Web Site Name](https://www.markdownguide.org/cheat-sheet/)
+* [Web Site Name](https://www.learnpython.org/en/Hello,_World!) [^1]
+[^1]: LearnPython has some ads, but has great tutorials with interactive activities.
