@@ -2,6 +2,25 @@
 <html lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    
+    <link rel="stylesheet" href="style.css">
+<head>
+    <title>BlackJack</title>
+</head>
+<body>
+    <h1>Blackjack</h1>
+    <div id="game-area">
+        <div id="dealer-cards" class="card-area"></div>
+        <div id="player-cards" class="card-area"></div>
+        <div id="game-controls">
+            <button id="hit-button" onclick="playerHits()">Hit</button>
+            <button id="stand-button" onclick="playerStands()">Stand</button>
+            <button id="start-button" onclick="startGame()">New Game</button>
+            <div id="status"></div>
+        </div>
+    </div>
+    <script src="blackjack.js"></script>
+    <script>
+        disableHitStand(); // Automatically start the game.
+    </script>
+</body>
 </html>
