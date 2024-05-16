@@ -1,8 +1,13 @@
+// Initialize game variables
 let deck = [];
 let playerHand = [];
 let dealerHand = [];
 const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
 const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+
+// Initialize money variables
+let playerMoney = 100;
+let bet = 0;
 
 function createDeck() {
     deck = [];
@@ -12,6 +17,11 @@ function createDeck() {
         }
     }
     shuffleDeck();
+}
+
+function loadPage() {
+    disableHitStand()
+    document.getElementById('player-money').textContent = `${playerMoney}`;
 }
 
 function shuffleDeck() {
@@ -38,8 +48,9 @@ function startGame() {
         disableHitStand();
         document.getElementById('status').textContent = "Blackjack! Dealer Wins";
     } else {
-    document.getElementById('status').textContent = "Hit or Stand?";
-    enableHitStand();        
+        document.getElementById('status').textContent = "Hit or Stand?";
+        enableHitStand();
+        document.getElementById('double-button').disabled = false;        
     }
 }
 
@@ -112,9 +123,16 @@ function playerStands() {
 function disableHitStand() {
     document.getElementById('hit-button').disabled = true;
     document.getElementById('stand-button').disabled = true;
+    document.getElementById('double-button').disabled = true;
 }
 
 function enableHitStand() {
     document.getElementById('hit-button').disabled = false;
     document.getElementById('stand-button').disabled = false;  
+}
+
+function doubleDown() {
+    // bet *= 2;
+    playerHand.push(drawCard());
+    playerStands();
 }

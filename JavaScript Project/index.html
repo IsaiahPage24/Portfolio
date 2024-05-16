@@ -9,18 +9,25 @@
 <body>
     <h1>Blackjack</h1>
     <div id="game-area">
-        <div id="dealer-cards" class="card-area"></div>
-        <div id="player-cards" class="card-area"></div>
+        <div id="board">
+            <div id="dealer-cards" class="card-area"></div>
+            <div id="player-cards" class="card-area"></div>
+        </div>
         <div id="game-controls">
+            <div id="status"></div>
             <button id="hit-button" onclick="playerHits()">Hit</button>
             <button id="stand-button" onclick="playerStands()">Stand</button>
             <button id="start-button" onclick="startGame()">New Game</button>
-            <div id="status"></div>
+        </div>
+        <div id="money-area">
+            <button id="bet-button">Set Bet</button>
+            <button id="double-button" onclick="doubleDown()">Double Down</button>
+            <div id="player-money"></div>
         </div>
     </div>
     <script src="blackjack.js"></script>
     <script>
-        disableHitStand(); // Automatically start the game.
+        loadPage(); // Disable certain buttons and reset money.
     </script>
 </body>
 </html>
