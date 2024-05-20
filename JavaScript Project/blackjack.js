@@ -32,6 +32,7 @@ function shuffleDeck() {
 }
 
 function startGame() {
+    document.getElementById('bet-button').disabled = true;
     createDeck();
     playerHand = [drawCard(), drawCard()];
     dealerHand = [drawCard(), drawCard()];
@@ -41,12 +42,15 @@ function startGame() {
     if (playerScore + dealerScore == 42) {
         disableHitStand();
         document.getElementById('status').textContent = "DOUBLE BLACKJACK! PUSH! A TIE!"
+        enableBetButton();
     } else if (playerScore == 21) {
         disableHitStand();
         document.getElementById('status').textContent = "Blackjack! Player Wins!";
+        enableBetButton();
     } else if (dealerScore == 21) {
         disableHitStand();
         document.getElementById('status').textContent = "Blackjack! Dealer Wins";
+        enableBetButton();
     } else {
         document.getElementById('status').textContent = "Hit or Stand?";
         enableHitStand();
@@ -93,7 +97,9 @@ function playerHits() {
         disableHitStand();
         showHands();
         document.getElementById('status').textContent = 'Player busts! Dealer wins.';
+        enableBetButton();
     } else {
+        document.getElementById('double-button').disabled = true;
         showHands();
     }
 }
@@ -109,12 +115,16 @@ function playerStands() {
     let result = '';
     if (dealerScore > 21) {
         result = 'Dealer busts! Player wins!';
+        enableBetButton();
     } else if (playerScore > dealerScore) {
         result = 'Player wins!';
+        enableBetButton();
     } else if (playerScore < dealerScore) {
         result = 'Dealer wins!';
+        enableBetButton();
     } else {
         result = 'Push! It\'s a tie!';
+        enableBetButton();
     }
     document.getElementById('status').textContent = result;
     showHands();
@@ -134,5 +144,18 @@ function enableHitStand() {
 function doubleDown() {
     // bet *= 2;
     playerHand.push(drawCard());
-    playerStands();
+    if (calculateScore(playerHand) > 21) {
+        disableHitStand();
+        showHands();
+        document.getElementById('status').textContent = 'Player busts! Dealer wins.';
+        enableBetButton();
+    } else {
+        document.getElementById('double-button').disabled = true;
+        showHands();
+        playerStands();
+    }
+}
+
+function enableBetButton() {
+    document.getElementById('bet-button').disabled = false;
 }
